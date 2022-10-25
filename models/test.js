@@ -1,47 +1,32 @@
 const { Schema, model } = require("mongoose");
 const Joi = require("joi");
-// const { handleSaveErrors } = require("../helpers");
+const handleSaveErrors = require("../middlewares/handleSaveErrors");
 
-const questionSchema = new Schema(
+const testSchema = new Schema(
   {
-    question: {
+    name: {
       type: String,
-      // required: true,
+      required: [true, "Set name"],
     },
-    questionId: {
-      type: Number,
-      // required: true,
-    },
-    answers: {
-      type: Array,
-      // required: true,
-    },
-    rightAnswer: {
+    email: {
       type: String,
     },
   },
   { versionKey: false, timestamps: true }
 );
 
-// questionSchema.post("save", handleSaveErrors);
+testSchema.post("save", handleSaveErrors);
 
-const getquestionSchema = Joi.object({
-  question: Joi.string().required(),
-  questionId: Joi.number().required(),
-  answers: Joi.array().required(),
-  // rightAnswer: Joi.string().required(),
-});
-
-const chackquestionSchema = Joi.object({
-  rightAnswer: Joi.string().required(),
+const addSchema = Joi.object({
+  name: Joi.string().required(),
+  email: Joi.string().required(),
 });
 
 const schemas = {
-  getquestionSchema,
-  chackquestionSchema,
+  addSchema,
 };
 
-const Test = model("test", questionSchema);
+const Test = model("test", testSchema);
 
 module.exports = {
   Test,
