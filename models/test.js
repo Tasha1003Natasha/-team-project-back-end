@@ -4,12 +4,20 @@ const handleSaveErrors = require("../middlewares/handleSaveErrors");
 
 const testSchema = new Schema(
   {
-    name: {
+    question: {
       type: String,
-      required: [true, "Set name"],
+      required: true,
     },
-    email: {
+    questionId: {
+      type: Number,
+    },
+    answers: {
+      type: Array,
+      required: true,
+    },
+    rightAnswer: {
       type: String,
+      required: true,
     },
   },
   { versionKey: false, timestamps: true }
@@ -17,13 +25,15 @@ const testSchema = new Schema(
 
 testSchema.post("save", handleSaveErrors);
 
-const addSchema = Joi.object({
-  name: Joi.string().required(),
-  email: Joi.string().required(),
+const getSchema = Joi.object({
+  question: Joi.string().required(),
+  questionId: Joi.number().required(),
+  answers: Joi.array().required(),
+  rightAnswer: Joi.string().required(),
 });
 
 const schemas = {
-  addSchema,
+  getSchema,
 };
 
 const Test = model("test", testSchema);
