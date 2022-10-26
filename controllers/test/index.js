@@ -1,4 +1,4 @@
 const getQuestions = require("./getQuestions");
-module.expres = {
+module.exports = {
   getQuestions,
 };
