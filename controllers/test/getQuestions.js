@@ -2,11 +2,12 @@ const { Test } = require("../../models/test");
 
 const getQuestions = async (req, res) => {
   const result = await Test.aggregate([
-    { $match: { type: "theory" } }, // filter the results
-    { $sample: { size: 12 } }, // You want to get 12 docs
+    { $match: { type: "tech" } },
+    { $sample: { size: 12 } },
   ]);
-  console.log(result);
+  // console.log(res);
   res.status(201).json(result);
+  // return result;
 };
-getQuestions();
+// getQuestions();
 module.exports = getQuestions;
