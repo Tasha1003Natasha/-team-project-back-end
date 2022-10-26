@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 
 const { DB_HOST, PORT } = process.env;
 
+// DB_HOST_VRO = "mongodb+srv://test:testuser@vro.s3tjvju.mongodb.net/db_contacts?retryWrites=true&w=majority";
 mongoose
   .connect(DB_HOST)
   .then(() => {
