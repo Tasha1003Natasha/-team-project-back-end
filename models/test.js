@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const { Schema, model } = require("mongoose");
 const Joi = require("joi");
 const handleSaveErrors = require("../middlewares/handleSaveErrors");
@@ -43,7 +42,7 @@ const schemas = {
   getSchema,
 };
 
-const Test = mongoose.model("test", testSchema);
+const Test = model("test", testSchema);
 
 module.exports = {
   Test,
