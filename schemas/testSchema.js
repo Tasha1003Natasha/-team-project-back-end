@@ -1,11 +1,12 @@
 const Joi = require("joi");
 
-const getSchema = Joi.object({
-  question: Joi.string().required(),
-  questionId: Joi.number().required(),
-  answers: Joi.array().required(),
-  rightAnswer: Joi.string().required(),
+const addSchema = Joi.object({
+  //   question: Joi.string().required(),
+
+  //   answers: Joi.array().required(),
+  //   rightAnswer: Joi.string().required(),
   type: Joi.string().required(),
+  //   results: Joi.number().required(),
 });
 
-module.exports = getSchema;
+module.exports = addSchema;
