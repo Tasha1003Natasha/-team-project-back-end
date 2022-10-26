@@ -7,14 +7,10 @@ const router = express.Router();
 const schemas = require("../../schemas");
 
 // signup
-router.post(
-  "/users/register",
-  validateBody(schemas.registerSchema),
-  ctrlWrapper(controllers.registerUser)
-);
+router.post("/users/register", validateBody(schemas.registerSchema), ctrlWrapper(controllers.registerUser));
 
 // // signin
-// router.post("/users/login", validateBody(loginSchema), ctrlWrapper(login));
+router.post("/users/login", validateBody(schemas.loginSchema), ctrlWrapper(controllers.loginUser));
 
 // router.get("/users/current", authenticate, ctrlWrapper(current));
 
