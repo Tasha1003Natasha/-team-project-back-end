@@ -4,6 +4,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const usersRouter = require("./routes/api/auth");
+const testRoute = require("./routes/api/test");
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", usersRouter);
+app.use("/api/tests", testRoute);
 
 // default @uses
 app.use((req, res) => {

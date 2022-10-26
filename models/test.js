@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const { Schema, model } = require("mongoose");
 const Joi = require("joi");
 const handleSaveErrors = require("../middlewares/handleSaveErrors");
@@ -19,6 +20,11 @@ const testSchema = new Schema(
       type: String,
       required: true,
     },
+
+    type: {
+      type: String,
+      required: true,
+    },
   },
   { versionKey: false, timestamps: true }
 );
@@ -30,13 +36,14 @@ const getSchema = Joi.object({
   questionId: Joi.number().required(),
   answers: Joi.array().required(),
   rightAnswer: Joi.string().required(),
+  type: Joi.string().required(),
 });
 
 const schemas = {
   getSchema,
 };
 
-const Test = model("test", testSchema);
+const Test = mongoose.model("test", testSchema);
 
 module.exports = {
   Test,
