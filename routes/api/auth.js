@@ -8,16 +8,20 @@ const schemas = require("../../schemas");
 
 // signup
 router.post(
-  "/users/register",
+  "/register",
   validateBody(schemas.registerSchema),
   ctrlWrapper(controllers.registerUser)
 );
 
 // // signin
-// router.post("/users/login", validateBody(loginSchema), ctrlWrapper(login));
+router.post(
+  "/login",
+  validateBody(schemas.loginSchema),
+  ctrlWrapper(controllers.loginUser)
+);
 
-// router.get("/users/current", authenticate, ctrlWrapper(current));
+// router.get("/current", authenticate, ctrlWrapper(current));
 
-// router.get("/users/logout", authenticate, ctrlWrapper(logout));
+// router.get("/logout", authenticate, ctrlWrapper(logout));
 
 module.exports = router;
