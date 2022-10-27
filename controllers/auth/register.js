@@ -1,4 +1,4 @@
-const { User } = require("../../models/users");
+const  User  = require("../../models/users");
 const RequestError = require("../../helpers/RequestError");
 // const { nanoid } = require("nanoid");
 const bcrypt = require("bcrypt");

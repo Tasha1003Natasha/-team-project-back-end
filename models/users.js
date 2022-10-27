@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-const { Schema } = mongoose;
+const { Schema, model } = require("mongoose");
 const { handleSaveErrors } = require("../middlewares");
 
 const userSchema = new Schema(
@@ -36,8 +35,7 @@ const userSchema = new Schema(
 
 userSchema.post("save", handleSaveErrors);
 
-const User = mongoose.model("user", userSchema);
+const User = model("user", userSchema);
 
-module.exports = {
-  User,
-};
+module.exports = User;
+
