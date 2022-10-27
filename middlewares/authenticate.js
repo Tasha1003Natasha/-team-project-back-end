@@ -4,7 +4,7 @@ const { RequestError } = require("../helpers/RequestError");
 require("dotenv").config();
 
 const { SECRET_KEY } = process.env;
-console.log(User);
+
 
 const authenticate = async (req, res, next) => {
   try {
