@@ -20,8 +20,8 @@ router.post(
   ctrlWrapper(controllers.loginUser)
 );
 
-// router.get("/users/current", authenticate, ctrlWrapper(current));
+// router.get("/current", authenticate, ctrlWrapper(current));
 
-// router.get("/users/logout", authenticate, ctrlWrapper(logout));
+// router.get("/logout", authenticate, ctrlWrapper(logout));
 
 module.exports = router;
