@@ -21,7 +21,7 @@ app.use("/api/tests", testRoute);
 
 // api-doc
 app.use(
-  "/api-docs",
+  "/docs",
   swaggerUi.serve,
   swaggerUi.setup(swaggerDocument)
 );
