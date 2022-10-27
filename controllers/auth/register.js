@@ -6,6 +6,7 @@ const bcrypt = require("bcrypt");
 // const sendEmail = require("../../helpers/sendEmail");
 // const createVerifyEmail = require("../../helpers/createVEriFyEmail");
 
+
 const registerUser = async (req, res) => {
   const { email, password } = req.body;
 

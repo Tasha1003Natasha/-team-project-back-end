@@ -1,11 +1,10 @@
-const { User } = require("../models/users");
 const jwt = require("jsonwebtoken");
-const { RequestError } = require("../helpers/index");
+const { User } = require("../models/users");
+const { RequestError } = require("../helpers/RequestError");
 require("dotenv").config();
 
-console.log(User);
 const { SECRET_KEY } = process.env;
-
+console.log(User);
 
 const authenticate = async (req, res, next) => {
   try {
@@ -19,14 +18,12 @@ const authenticate = async (req, res, next) => {
     try {
       jwt.verify(token, SECRET_KEY);
       const { id } = jwt.decode(token);
+      const user = await User.findById(id);
 
-      const resultUser = await User.find({ _id: id });
-
-      if (!resultUser) {
+      if (!user) {
         next(RequestError(401, "Not authorized"));
       }
-
-      req.user = resultUser;
+      req.user = user;
 
       next();
     } catch (error) {
@@ -35,6 +32,7 @@ const authenticate = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+
 };
 
 module.exports = authenticate;

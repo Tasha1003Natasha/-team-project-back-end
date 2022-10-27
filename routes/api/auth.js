@@ -1,12 +1,11 @@
 const express = require("express");
-const { ctrlWrapper } = require("../../helpers");
+const ctrlWrapper = require("../../helpers/ctrlWrapper");
 const controllers = require("../../controllers/auth");
-const {
-  validateBody,
-  authenticate
-} = require("../../middlewares");
 
+const validateBody = require("../../middlewares/validateBody")
 const schemas = require("../../schemas");
+const authenticate = require("../../middlewares/authenticate");
+
 const router = express.Router();
 
 // signup

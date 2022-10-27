@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 const ctrl = require("../../controllers/test");
-const { ctrlWrapper } = require("../../helpers");
-const { schemas } = require("../../models/test");
+const ctrlWrapper = require("../../helpers/ctrlWrapper");
+// const { schemas } = require("../../models/test");
 
 router.get("/theory", ctrlWrapper(ctrl.getQuestions));
 // router.get("/tech", ctrlWrapper(ctrl.getQuestions(tech)));
