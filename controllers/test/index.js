@@ -1,4 +1,7 @@
-const getQuestions = require("./getQuestions");
+const getTheoryQuestions = require("./getTheoryQuestions");
+const getTechQuestions = require("./getTechQuestions");
+
 module.exports = {
-  getQuestions,
+  getTheoryQuestions,
+  getTechQuestions,
 };
