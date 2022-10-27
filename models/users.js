@@ -37,5 +37,5 @@ userSchema.post("save", handleSaveErrors);
 
 const User = model("user", userSchema);
 
-module.exports = User;
+module.exports = { User };
 
