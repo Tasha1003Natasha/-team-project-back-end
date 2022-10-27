@@ -22,6 +22,10 @@ const userSchema = new Schema(
       type: Number,
       default: 0,
     },
+    testType: {
+      type: String,
+      default: "",
+    },
     // avatarURL: {
     //   type: String,
     //   required: true,
