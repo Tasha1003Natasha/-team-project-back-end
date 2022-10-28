@@ -30,6 +30,7 @@ const loginUser = async (req, res) => {
     token: updatedUser.token,
     user: {
       email: updatedUser.email,
+      id: updatedUser._id
     },
   });
 };

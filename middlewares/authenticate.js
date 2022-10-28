@@ -7,6 +7,7 @@ const { SECRET_KEY } = process.env;
 
 
 const authenticate = async (req, res, next) => {
+
   try {
     const { authorization = "" } = req.headers;
     const [bearer, token] = authorization.split(" ");
@@ -16,6 +17,7 @@ const authenticate = async (req, res, next) => {
     }
 
     try {
+
       jwt.verify(token, SECRET_KEY);
       const { id } = jwt.decode(token);
       const user = await User.findById(id);
