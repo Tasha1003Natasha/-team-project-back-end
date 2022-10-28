@@ -1,11 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-const ctrl = require("../../controllers/test");
+const ctrl = require("../../controllers/results");
 const ctrlWrapper = require("../../helpers/ctrlWrapper");
-// const { schemas } = require("../../models/test");
 
-router.get("/theory", ctrlWrapper(ctrl.resultsTheory));
-router.get("/tech", ctrlWrapper(ctrl.resultsTech));
+router.post("/theory", ctrlWrapper(ctrl.resultsTheory));
+router.post("/tech", ctrlWrapper(ctrl.resultsTech));
 
 module.exports = router;
