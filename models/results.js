@@ -3,21 +3,14 @@ const handleSaveErrors = require("../middlewares/handleSaveErrors");
 
 const resultsSchema = new Schema(
   {
-    questionId: {
-      type: Number,
-    },
-    rightAnswer: {
-      type: String,
+    userAnswer: {
+      type: [],
       required: true,
     },
     type: {
       type: String,
       required: true,
     },
-    userAnswer: {
-      type: String,
-      required: true,
-    }
   },
   { versionKey: false, timestamps: true }
 );

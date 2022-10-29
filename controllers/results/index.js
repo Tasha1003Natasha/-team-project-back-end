@@ -1,4 +1,4 @@
-const resultsTheory = require("./resultsTheory");
+const resultsTheory = require("./results");
 
 module.exports = {
   resultsTheory,

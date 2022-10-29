@@ -4,7 +4,7 @@ const router = express.Router();
 const ctrl = require("../../controllers/results");
 const ctrlWrapper = require("../../helpers/ctrlWrapper");
 
-router.post("/theory", ctrlWrapper(ctrl.resultsTheory));
-router.post("/tech", ctrlWrapper(ctrl.resultsTech));
+router.post("/results", ctrlWrapper(ctrl.results));
+
 
 module.exports = router;
