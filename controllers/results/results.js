@@ -2,59 +2,28 @@ const { Test } = require("../../models/test");
 // const { Results } = require("../../models/results");
 
 const results = async (req, res) => {
-  // const { userAnswer } = req.body;
+  const result = await Test.find();
 
-  //   const result = await Model.aggregate().
-  //  search({
-  //    text: {
-  //      query: 'baseball',
-  //      path: 'plot'
-  //    }
-  //  })
+  const usersAllAnswer = [
+    { rightAnswer: "Waterfall", _id: "635937f59d8216968f25ff83" },
+    {
+      rightAnswer: "All options are incorrect",
+      _id: "635937f59d8216968f25ff85",
+    },
+    { rightAnswer: "Test case", _id: "635937f59d8216968f25ff90" },
+  ];
 
-  const result = await Test.aggregate().sort({ type: "theory" });
-  console.log([result]);
+  const allCorrect = [];
 
-  // const allRightAnswer = Object.entries(result[0]).forEach(([key, value]) => {
-  //   if (key === "rightAnswer") {
-  //     console.log(`${value}`);
-  //   }
-
-  // console.log("rightAnswer": `${value}`);
-  // });
-
-  // const allRightAnswer = Object.keys(result[0]);
-  // console.log(allRightAnswer);
-
-  // const resultFind = await Test.find({
-  //   rightAnswer,
-  //   type,
-  // });
-
-  //   const total = resultFind.length;
-
-  //   const correctAnswers =
-
-  //   const correct  = () => {
-  //     return Math.round((correctAnswers * 100% ) / total);
-  // };
-  //   const incorrect  = () => {
-  //     return Math.round((100% - correct));
-  // };
-
-  //   const result = await Results.create({
-  //     type,
-  //   });
-
-  //   res.status(201).json({
-  //     id: result._id,
-  //     type,
-  // total,
-  //   });
-  // res.status(201);
-  // res.status(201).json(result);
+  for (let i = 0; i < usersAllAnswer.length; i++) {
+    const checkAnswer = await Test.findOne({ _id: `${usersAllAnswer[i]._id}` });
+    if (checkAnswer.rightAnswer === usersAllAnswer[i].rightAnswer) {
+      allCorrect.push(usersAllAnswer[i].rightAnswer);
+    }
+  }
+  console.log(allCorrect.length);
 };
-
 results();
 
+// res.status(201).json(result);
 module.exports = results;
