@@ -14,6 +14,10 @@ const resultsSchema = new Schema(
       type: String,
       required: true,
     },
+    userAnswer: {
+      type: String,
+      required: true,
+    }
   },
   { versionKey: false, timestamps: true }
 );
