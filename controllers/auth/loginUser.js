@@ -11,9 +11,6 @@ const loginUser = async (req, res) => {
 
   const result = await User.findOne({ email });
 
-  // if (!result.verify) {
-  //   throw RequestError(401, "Email not verify");
-  // }
 
   if (!result) {
     throw RequestError(401, "Email is wrong");
@@ -33,6 +30,7 @@ const loginUser = async (req, res) => {
     token: updatedUser.token,
     user: {
       email: updatedUser.email,
+      id: updatedUser._id
     },
   });
 };
