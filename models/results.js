@@ -4,7 +4,7 @@ const handleSaveErrors = require("../middlewares/handleSaveErrors");
 const resultsSchema = new Schema(
   {
     userAnswer: {
-      type: [],
+      type: String,
       required: true,
     },
     type: {

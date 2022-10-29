@@ -1,10 +1,14 @@
 const express = require("express");
 const router = express.Router();
-
-const ctrl = require("../../controllers/results");
+const validateBody = require("../../middlewares/validateBody");
+const ctrl = require("../../controllers/results/results");
 const ctrlWrapper = require("../../helpers/ctrlWrapper");
+const schemas = require("../../schemas");
 
-router.post("/results", ctrlWrapper(ctrl.results));
-
+router.post(
+  "/results",
+  validateBody(schemas.resultsSchema),
+  ctrlWrapper(ctrl.results)
+);
 
 module.exports = router;

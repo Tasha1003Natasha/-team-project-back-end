@@ -1,5 +1,5 @@
-const resultsTheory = require("./results");
+const results = require("./results");
 
 module.exports = {
-  resultsTheory,
+  results,
 };
