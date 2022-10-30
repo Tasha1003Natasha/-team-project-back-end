@@ -20,4 +20,10 @@ router.get(
   ctrlWrapper(ctrl.getTechQuestions)
 );
 
+router.post(
+  "/results",
+  validateBody(schemas.resultsSchema),
+  ctrlWrapper(ctrl.results)
+);
+
 module.exports = router;
