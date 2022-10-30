@@ -6,7 +6,6 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
 const usersRouter = require("./routes/api/auth");
 const testRoute = require("./routes/api/test");
-const resultsRoute = require("./routes/api/results");
 
 const app = express();
 
@@ -18,14 +17,11 @@ app.use(express.json());
 
 app.use("/api/auth", usersRouter);
 app.use("/api/tests", testRoute);
-app.use("/api/results", resultsRoute);
+
+// app.use("/api/results", resultsRoute);
 
 // api-doc
-app.use(
-  "/docs",
-  swaggerUi.serve,
-  swaggerUi.setup(swaggerDocument)
-);
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // default @uses
 app.use((req, res) => {

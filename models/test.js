@@ -28,7 +28,6 @@ const testSchema = new Schema(
 
 testSchema.post("save", handleSaveErrors);
 
-
 const Test = model("test", testSchema);
 
 module.exports = {

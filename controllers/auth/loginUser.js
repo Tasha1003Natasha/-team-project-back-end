@@ -11,7 +11,6 @@ const loginUser = async (req, res) => {
 
   const result = await User.findOne({ email });
 
-
   if (!result) {
     throw RequestError(401, "Email is wrong");
   }
@@ -24,13 +23,17 @@ const loginUser = async (req, res) => {
 
   const token = jwt.sign({ id: result._id }, SECRET_KEY);
 
-  const updatedUser = await User.findOneAndUpdate({ _id: result._id }, { token }, { new: true });
+  const updatedUser = await User.findOneAndUpdate(
+    { _id: result._id },
+    { token },
+    { new: true }
+  );
 
   res.json({
     token: updatedUser.token,
     user: {
       email: updatedUser.email,
-      id: updatedUser._id
+      id: updatedUser._id,
     },
   });
 };
