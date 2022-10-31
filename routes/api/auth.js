@@ -22,7 +22,7 @@ router.post(
   ctrlWrapper(controllers.loginUser)
 );
 
-// router.get("/current", authenticate, ctrlWrapper(current));
+router.get("/current", authenticate, ctrlWrapper(controllers.current));
 
 //  logout
 router.post("/logout", authenticate, ctrlWrapper(controllers.logoutUser));
