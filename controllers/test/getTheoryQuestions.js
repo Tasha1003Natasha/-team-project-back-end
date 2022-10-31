@@ -5,7 +5,9 @@ const getTheoryQuestions = async (req, res) => {
     { $match: { type: "theory" } },
     { $sample: { size: 12 } },
   ]);
-  // console.log(res);
+  for (let i = 0; i < result.length; i++) {
+    delete result[i].rightAnswer;
+  }
   res.status(201).json(result);
 };
 
