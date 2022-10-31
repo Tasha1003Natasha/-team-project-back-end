@@ -1,13 +1,11 @@
 const jwt = require("jsonwebtoken");
 const { User } = require("../models/users");
-const { RequestError } = require("../helpers/RequestError");
+const RequestError = require("../helpers/RequestError");
 require("dotenv").config();
 
 const { SECRET_KEY } = process.env;
 
-
 const authenticate = async (req, res, next) => {
-
   try {
     const { authorization = "" } = req.headers;
     const [bearer, token] = authorization.split(" ");
@@ -17,7 +15,6 @@ const authenticate = async (req, res, next) => {
     }
 
     try {
-
       jwt.verify(token, SECRET_KEY);
       const { id } = jwt.decode(token);
       const user = await User.findById(id);
@@ -34,7 +31,6 @@ const authenticate = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-
 };
 
 module.exports = authenticate;

@@ -7,9 +7,6 @@ const testSchema = new Schema(
       type: String,
       required: true,
     },
-    questionId: {
-      type: Number,
-    },
     answers: {
       type: Array,
       required: true,
@@ -17,6 +14,7 @@ const testSchema = new Schema(
     rightAnswer: {
       type: String,
       required: true,
+      versionKey: false,
     },
     type: {
       type: String,
