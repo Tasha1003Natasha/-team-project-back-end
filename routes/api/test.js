@@ -10,14 +10,14 @@ const schemas = require("../../schemas");
 
 router.get(
   "/theory",
-  //   authenticate,
-  // validateBody(schemas.getSchema),
+  // authenticate,
+
   ctrlWrapper(ctrl.getTheoryQuestions)
 );
 router.get(
   "/tech",
-  //   authenticate,
-  // validateBody(schemas.getSchema),
+  // authenticate,
+
   ctrlWrapper(ctrl.getTechQuestions)
 );
 
