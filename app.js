@@ -18,13 +18,10 @@ app.use(express.json());
 app.use("/api/auth", usersRouter);
 app.use("/api/tests", testRoute);
 
+// app.use("/api/results", resultsRoute);
 
 // api-doc
-app.use(
-  "/docs",
-  swaggerUi.serve,
-  swaggerUi.setup(swaggerDocument)
-);
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // default @uses
 app.use((req, res) => {
