@@ -21,10 +21,10 @@ const loginUser = async (req, res) => {
     throw RequestError(401, "Password is wrong");
   }
 
-  const token = jwt.sign({ id: result._id }, SECRET_KEY);
+  const token = jwt.sign({ id: result._id }, SECRET_KEY, { expiresIn: "1h" });
 
   const updatedUser = await User.findOneAndUpdate(
-    { _id: result._id },
+    result._id,
     { token },
     { new: true }
   );
