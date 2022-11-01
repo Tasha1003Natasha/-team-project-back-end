@@ -18,7 +18,7 @@ app.use(express.json());
 
 app.use("/api/auth", usersRouter);
 app.use("/api/tests", testRoute);
-app.use("/api/contacts", contactsRoute);
+app.use("/api", contactsRoute);
 
 // app.use("/api/results", resultsRoute);
 

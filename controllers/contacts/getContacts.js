@@ -2,11 +2,7 @@ const { Contacts } = require("../../models/contacts");
 
 const getContacts = async (req, res) => {
   const contacts = await Contacts.find({}, "-createdAt -updatedAt");
-  // res.status(201).json(contacts);
-  // res.json(contacts);
-  console.log(contacts);
+  res.status(201).json(contacts);
 };
-
-getContacts();
 
 module.exports = getContacts;
