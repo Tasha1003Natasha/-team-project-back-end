@@ -17,10 +17,6 @@ const userSchema = new Schema(
       type: String,
       default: "",
     },
-    // results: {
-    //   type: Number,
-    //   default: 0,
-    // },
     testType: {
       type: String,
       default: "",
