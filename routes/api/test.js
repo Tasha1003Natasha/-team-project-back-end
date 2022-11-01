@@ -7,6 +7,7 @@ const authenticate = require("../../middlewares/authenticate");
 const ctrlWrapper = require("../../helpers/ctrlWrapper");
 const schemas = require("../../schemas");
 
+
 router.get(
   "/theory",
   // authenticate,
@@ -19,6 +20,7 @@ router.get(
 
   ctrlWrapper(ctrl.getTechQuestions)
 );
+
 
 router.post(
   "/results",
