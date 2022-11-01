@@ -1,8 +1,12 @@
 const { Test } = require("../../models/test");
 
 const getTechQuestions = async (req, res) => {
+
+  const { type } = req.params;
+
   const result = await Test.aggregate([
-    { $match: { type: "tech" } },
+    // { $match: { type: "tech" } },
+    { $match: { type } },
     { $sample: { size: 12 } },
   ]);
   // console.log(result);
@@ -11,7 +15,7 @@ const getTechQuestions = async (req, res) => {
   }
 
 
-  res.status(201).json(result);
+  res.json(result);
 };
 
 

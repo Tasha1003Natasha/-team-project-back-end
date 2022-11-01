@@ -6,18 +6,21 @@ const results = async (req, res) => {
 
   for (let i = 0; i < userAnswer.length; i++) {
     const checkAnswer = await Test.findOne({ _id: `${userAnswer[i]._id}` });
+    // const arrayofQuestions = await Test.find([{ $match: { type: "tech" } }])
+    //  { $match: { type: "tech" } },
     if (checkAnswer.rightAnswer === userAnswer[i].userAnswer) {
       allCorrectArr.push(userAnswer[i].userAnswer);
     }
   }
 
-  const correct = allCorrectArr.length;
-  const incorrect = 12 - correct;
+  // let correct = allCorrectArr.length;
+  // let incorrect = 12 - correct;
 
   res.json({
-    correct: correct,
-    incorrect: incorrect,
+    correct: allCorrectArr.length,
+    incorrect: 12 - allCorrectArr.length,
   });
 };
 
 module.exports = results;
+// todo find way  how to  get all data from DB by one request for line 8

@@ -6,3 +6,7 @@ const loginSchema = Joi.object({
 });
 
 module.exports = loginSchema;
+
+
+// todo add RegEX to validate Email
+//  unite files loginSchema.js and registerSchema.js
