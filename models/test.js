@@ -8,7 +8,7 @@ const testSchema = new Schema(
       required: true,
     },
     answers: {
-      type: Array,
+      type: [String], // check
       required: true,
     },
     rightAnswer: {
@@ -18,6 +18,7 @@ const testSchema = new Schema(
     },
     type: {
       type: String,
+      enum: ["tech", "theory"], // added
       required: true,
     },
   },

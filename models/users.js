@@ -1,6 +1,5 @@
 const { Schema, model } = require("mongoose");
 const handleSaveErrors = require("../middlewares/handleSaveErrors");
-
 const userSchema = new Schema(
   {
     password: {
@@ -17,6 +16,10 @@ const userSchema = new Schema(
       type: String,
       default: "",
     },
+    results: {
+      type: Number,
+      default: 0,
+    },
     testType: {
       type: String,
       default: "",
@@ -30,3 +33,7 @@ userSchema.post("save", handleSaveErrors);
 const User = model("user", userSchema);
 
 module.exports = { User };
+
+  // todo remove result and testtype from UserSchema
+  // todo change file name
+  // todo  add RegEX to validate email to USERSCHEMA
