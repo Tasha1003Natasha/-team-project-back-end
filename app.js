@@ -20,8 +20,6 @@ app.use("/api/auth", usersRouter);
 app.use("/api/tests", testRoute);
 app.use("/api", contactsRoute);
 
-// app.use("/api/results", resultsRoute);
-
 // api-doc
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 

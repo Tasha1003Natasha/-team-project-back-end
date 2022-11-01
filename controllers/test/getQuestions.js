@@ -1,14 +1,17 @@
 const { Test } = require("../../models/test");
 
-const getTheoryQuestions = async (req, res) => {
+const getTechQuestions = async (req, res) => {
+  const { type } = req.params;
   const result = await Test.aggregate([
-    { $match: { type: "theory" } },
+    { $match: { type } },
     { $sample: { size: 12 } },
   ]);
+  // console.log(result);
   for (let i = 0; i < result.length; i++) {
     delete result[i].rightAnswer;
   }
-  res.status(201).json(result);
+  res.json(result);
 };
 
-module.exports = getTheoryQuestions;
+
+module.exports = getTechQuestions;
