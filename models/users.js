@@ -17,26 +17,14 @@ const userSchema = new Schema(
       type: String,
       default: "",
     },
-    results: {
-      type: Number,
-      default: 0,
-    },
+    // results: {
+    //   type: Number,
+    //   default: 0,
+    // },
     testType: {
       type: String,
       default: "",
     },
-    // avatarURL: {
-    //   type: String,
-    //   required: true,
-    // },
-    // verify: {
-    //   type: Boolean,
-    //   default: false,
-    // },
-    // verificationToken: {
-    //   type: String,
-    //   required: true,
-    // },
   },
   { versionKey: false }
 );
@@ -46,4 +34,3 @@ userSchema.post("save", handleSaveErrors);
 const User = model("user", userSchema);
 
 module.exports = { User };
-

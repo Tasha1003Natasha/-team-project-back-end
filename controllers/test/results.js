@@ -11,8 +11,8 @@ const results = async (req, res) => {
     }
   }
 
-  let correct = allCorrectArr.length;
-  let incorrect = 12 - correct;
+  const correct = allCorrectArr.length;
+  const incorrect = 12 - correct;
 
   res.json({
     correct: correct,

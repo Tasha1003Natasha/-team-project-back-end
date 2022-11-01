@@ -5,7 +5,7 @@ const getTechQuestions = async (req, res) => {
     { $match: { type: "tech" } },
     { $sample: { size: 12 } },
   ]);
-  console.log(result);
+  // console.log(result);
   for (let i = 0; i < result.length; i++) {
     delete result[i].rightAnswer;
   }
