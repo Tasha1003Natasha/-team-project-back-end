@@ -26,7 +26,4 @@ router.post("/logout", authenticate, ctrlWrapper(controllers.logoutUser));
 // Mail for header
 router.get("/current", authenticate, ctrlWrapper(controllers.current));
 
-//  Endpoint for receiving user information
-router.post("/refresh", authenticate, ctrlWrapper(controllers.refreshToken));
-
 module.exports = router;
