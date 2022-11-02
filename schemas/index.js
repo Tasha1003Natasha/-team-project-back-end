@@ -1,5 +1,6 @@
-const loginSchema = require("./loginSchema");
-const registerSchema = require("./registerSchema");
+// const loginSchema = require("./userSchema");
+// const registerSchema = require("./userSchema");
+const schemas = require("./userSchema");
 const resultsSchema = require("./resultsSchema");
 
-module.exports = { registerSchema,  loginSchema, resultsSchema };
+module.exports = { resultsSchema, schemas };

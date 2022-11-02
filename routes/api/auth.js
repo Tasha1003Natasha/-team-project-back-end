@@ -23,7 +23,7 @@ router.post(
 //  logout
 router.post("/logout", authenticate, ctrlWrapper(controllers.logoutUser));
 
-// Mail for header
+
 router.get("/current", authenticate, ctrlWrapper(controllers.current));
 
 module.exports = router;
