@@ -1,4 +1,3 @@
-
 const resultsSchema = require("./resultsSchema");
 const { loginSchema, registerSchema } = require("./userSchema");
 
