@@ -1,6 +1,6 @@
 const { Test } = require("../../models/test");
 
-const getTechQuestions = async (req, res) => {
+const getQuestions = async (req, res) => {
   const { type } = req.params;
   const result = await Test.aggregate([
     { $match: { type } },
@@ -13,4 +13,4 @@ const getTechQuestions = async (req, res) => {
   res.json(result);
 };
 
-module.exports = getTechQuestions;
+module.exports = getQuestions;

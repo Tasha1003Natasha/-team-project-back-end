@@ -9,8 +9,8 @@ const schemas = require("../../schemas");
 
 router.get(
   "/:type",
-  authenticate,
-  ctrlWrapper(ctrl.getTheoryQuestions)
+  // authenticate,
+  ctrlWrapper(ctrl.getQuestions)
 );
 
 router.post(
