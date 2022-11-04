@@ -7,11 +7,7 @@ const authenticate = require("../../middlewares/authenticate");
 const ctrlWrapper = require("../../helpers/ctrlWrapper");
 const schemas = require("../../schemas");
 
-router.get(
-  "/:type",
-  // authenticate,
-  ctrlWrapper(ctrl.getQuestions)
-);
+router.get("/:type", authenticate, ctrlWrapper(ctrl.getQuestions));
 
 router.post(
   "/results",

@@ -1,36 +1,20 @@
 const { Test } = require("../../models/test");
 
 const results = async (req, res) => {
-  const userAnswer = req.body;
-  // const allCorrectArr = [];
+  const idAnswers = req.body.map(({ _id }) => _id);
 
-  for (let i = 0; i < userAnswer.length; i++) {
-    const result = await Test.find().where({
-      _id: `${userAnswer[i]._id}`,
-      rightAnswer: `${userAnswer[i].userAnswer}`,
-    });
-    console.log(result);
-    return result;
-  }
+  const questionsArr = await Test.find({ _id: { $in: idAnswers } });
 
-  // User.find().where("_id").in(followedIds);
+  const correct = req.body.filter(({ userAnswer, _id }) => {
+    const question = questionsArr.find((item) => String(item._id) === _id);
 
-  // const checkAnswer = await (
+    return question.rightAnswer === userAnswer;
+  }).length;
 
-  // const arrayofQuestions = await Test.find([{ $match: { type: "tech" } }])
-  //  { $match: { type: "tech" } },
-  //////////////////////////////////////////////
-
-  //   if (checkAnswer.rightAnswer === userAnswer[i].userAnswer) {
-  //     allCorrectArr.push(userAnswer[i].userAnswer);
-  //   }
-  // }
-  //////////////////////////////////////
-  // let correct = allCorrectArr.length;
-  // let incorrect = 12 - correct;
-
-  res.json({ rusult });
+  res.json({
+    correct,
+    incorrect: 12 - correct,
+  });
 };
 
 module.exports = results;
-// todo find way  how to  get all data from DB by one request for line 8
