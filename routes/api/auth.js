@@ -4,7 +4,11 @@ const controllers = require("../../controllers/auth");
 const validateBody = require("../../middlewares/validateBody");
 const schemas = require("../../schemas");
 const authenticate = require("../../middlewares/authenticate");
+const passport = require("passport");
 const router = express.Router();
+require('../../google-stategy/google');
+
+// const { BASE_URL } = process.env
 
 // signup
 router.post(
@@ -25,5 +29,27 @@ router.post("/logout", authenticate, ctrlWrapper(controllers.logoutUser));
 
 
 router.get("/current", authenticate, ctrlWrapper(controllers.current));
+
+// google
+router.get('/google',
+  passport.authenticate('google', {
+    scope:
+      ['email', 'profile']
+  }
+  ));
+
+
+
+router.get('/google/callback',
+  passport.authenticate('google', {
+    failureRedirect: '/failed',
+  }),
+  controllers.googleCallbackHandler
+);
+
+
+// router.get("/success", controllers.googleCallbackHandler)
+
+
 
 module.exports = router;

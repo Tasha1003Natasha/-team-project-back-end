@@ -6,15 +6,29 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
 const usersRouter = require("./routes/api/auth");
 const testRoute = require("./routes/api/test");
+const passport = require("passport");
+const session = require('express-session');
+
 
 
 const app = express();
+
+
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 
 app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
+app.use(session({
+  secret: "cats",
+  resave: false,
+  saveUninitialized: true,
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 
 app.use("/api/auth", usersRouter);
 app.use("/api/tests", testRoute);
