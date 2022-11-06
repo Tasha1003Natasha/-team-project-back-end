@@ -6,7 +6,6 @@ require("dotenv").config()
 const {
     GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET,
-    // SECRET_KEY,
     BASE_URL
 } = process.env
 
