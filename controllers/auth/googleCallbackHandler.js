@@ -9,6 +9,7 @@ const {
 } = process.env
 
 const googleCallbackHandler = async (req, res) => {
+
     const result = await User.findOne({ email: req.user.email });
 
     let token = null;

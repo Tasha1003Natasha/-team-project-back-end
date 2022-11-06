@@ -48,8 +48,6 @@ router.get('/google/callback',
 );
 
 
-// router.get("/success", controllers.googleCallbackHandler)
-
 
 
 module.exports = router;
