@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.0",
   "info": {
     "version": "2.0.0",
     "title": "TEST API docs",
@@ -14,8 +14,8 @@
       "description": "Authorization endpoints"
     },
     {
-      "name": "User",
-      "description": "User endpoints"
+      "name": "Test",
+      "description": "Test endpoints"
     }
   ],
   "paths": {
@@ -51,7 +51,7 @@
             "content": {}
           },
           "409": {
-            "description": "Provided email already exists",
+            "description": "Email in use",
             "content": {}
           }
         }
@@ -88,8 +88,8 @@
             "description": "Bad request (invalid request body)",
             "content": {}
           },
-          "403": {
-            "description": "Email doesn't exist / Password is wrong",
+          "401": {
+            "description": "Email is wrong / Password is wrong",
             "content": {}
           }
         }
@@ -102,63 +102,12 @@
         "security": [{ "Bearer": [] }],
         "parameters": [],
         "responses": {
-          "204": {
-            "description": "Successful operation",
-            "content": {}
-          },
-          "400": {
-            "description": "No token provided",
-            "content": {}
-          },
-          "401": {
-            "description": "Unauthorized (invalid access token)",
-            "content": {}
-          },
-          "404": {
-            "description": "Invalid user / Invalid session",
-            "content": {}
-          }
-        }
-      }
-    },
-    "/auth/refresh": {
-      "post": {
-        "tags": ["Auth"],
-        "summary": "Get new pair of tokens (use Bearer {refreshToken} instead of accessToken)",
-        "security": [{ "Bearer": [] }],
-        "parameters": [],
-        "requestBody": {
-          "description": "Object with session's id",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RefreshTokensRequest"
-              }
-            }
-          }
-        },
-        "responses": {
           "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RefreshTokensResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid request body / No token provided",
+            "description": "Logout success / Successful operation",
             "content": {}
           },
           "401": {
-            "description": "Unauthorized (invalid refresh token)",
-            "content": {}
-          },
-          "404": {
-            "description": "Invalid user / Invalid session",
+            "description": "Not authorized",
             "content": {}
           }
         }
@@ -167,10 +116,10 @@
     "/auth/google": {
       "get": {
         "tags": ["Auth"],
-        "summary": "Google authentication. WARNING: Works only for sign-in, after registered on front-end (if you're writing your back-end for a SPECIFIC front-end, then you can configure it right to work both for sign-up & sign-in)",
+        "summary": "Google authentication",
         "responses": {
           "200": {
-            "description": "Successful operation (redirect to front-end with accessToken, refreshToken and sid in query). Then use GET /user",
+            "description": "Successful operation (redirect to front-end with accessToken in query). Then use GET /user",
             "content": {}
           },
           "403": {
@@ -180,54 +129,83 @@
         }
       }
     },
-    "/user/balance": {
-      "patch": {
-        "tags": ["User"],
-        "summary": "Update user's balance",
-        "security": [{ "Bearer": [] }],
-        "parameters": [],
-        "requestBody": {
-          "description": "New balance object",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewBalance"
-              }
-            }
-          }
-        },
+    "/auth/current": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Get current user",
+         "security": [{ "Bearer": [] }],
         "responses": {
           "200": {
             "description": "Successful operation",
             "content": {
-              "application/json": {
+               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NewBalance"
+                  "$ref": "#/components/schemas/CurrentResponse"
                 }
               }
             }
           },
-          "400": {
-            "description": "Bad request (invalid request body) / No token provided",
-            "content": {}
-          },
           "401": {
-            "description": "Unauthorized",
-            "content": {}
-          },
-          "404": {
-            "description": "Invalid user / Invalid session",
+            "description": "Not authorized",
             "content": {}
           }
         }
       }
     },
-    "/user": {
+    "/test/{type}": {
       "get": {
-        "tags": ["User"],
-        "summary": "Get all your info",
+        "tags": ["Test"],
+        "summary": "Get 12 random test  TYPES : tech | theory",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "type",
+            "schema": {
+              "type": "string",
+              "enum":[
+                "tech",
+                "theory"
+              ]
+            },
+            "required": true,
+            "description": "Test type tech or theory"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TestResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/test/result": {
+      "post": {
+        "tags": ["Test"],
+        "summary": "Get result of test",
         "parameters": [],
+         "requestBody": {
+          "description": "Object of answers",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResultRequest"
+              }
+            }
+          }
+        },
         "security": [{ "Bearer": [] }],
         "responses": {
           "200": {
@@ -235,17 +213,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetUserInfo"
+                  "$ref": "#/components/schemas/ResultResponse"
                 }
               }
             }
           },
-          "400": {
-            "description": "No token provided",
-            "content": {}
-          },
           "401": {
-            "description": "Unauthorized (invalid access token)",
+            "description": "Unauthorized",
             "content": {}
           }
         }
@@ -316,113 +290,85 @@
             "type": "string",
             "description": "Session's access token (needed for all requests)",
             "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZmMyMDg1YmQwOTM2NTI4MTA3Y2UyNzQiLCJzaWQiOiI1ZmMyZDJmY2UxZDIwNTA2NzAyYmRkMjIiLCJpYXQiOjE2MDY2MDM1MTYsImV4cCI6MTYwNjYwNzExNn0.rJ_QjU4KvA76H96RHsvOBChK0Vjbd0NmqjMxdQVJIXA"
-          },
-          "refreshToken": {
-            "type": "string",
-            "description": "Session's refresh token (needed for /auth/refresh)",
-            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZmMyMDg1YmQwOTM2NTI4MTA3Y2UyNzQiLCJzaWQiOiI1ZmMyZDJmY2UxZDIwNTA2NzAyYmRkMjIiLCJpYXQiOjE2MDY2MDM1MTYsImV4cCI6MTYwNjYwNzExNn0.rJ_QjU4KvA76H96RHsvOBChK0Vjbd0NmqjMxdQVJIXB"
-          },
-          "sid": {
-            "type": "string",
-            "description": "Session's id (needed for /auth/refresh)",
-            "example": "507f1f77bcf86cd799439011"
-          },
-          "userData": {
-            "type": "object",
-            "properties": {
-              "email": {
-                "type": "string",
-                "description": "User's email",
-                "format": "email"
+          }
+        }
+      },
+      "TestResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string",
+              "description": "question ID",
+              "example": "635937f59d8216968f25ff87"
+            },
+            "answer": {
+              "type": "array",
+              "items": {
+                "type": "string"
               },
-              "balance": {
-                "type": "integer",
-                "description": "User's balance",
-                "example": 5,
-                "minimum": 0
-              },
-              "id": {
-                "type": "string",
-                "description": "User's id",
-                "example": "507f1f77bcf86cd799439012"
-              },
-              "transactions": {
-                "type": "array",
-                "description": "User's transactions",
-                "items": {
-                  "type": "object",
-                  "description": "User's transaction",
-                  "properties": {
-                    "description": {
-                      "type": "string",
-                      "description": "Transaction's description",
-                      "example": "Transaction's description"
-                    },
-                    "category": {
-                      "type": "string",
-                      "description": "Transaction's category",
-                      "enum": [
-                        "Продукты",
-                        "Алкоголь",
-                        "Развлечения",
-                        "Здоровье",
-                        "Транспорт",
-                        "Всё для дома",
-                        "Техника",
-                        "Коммуналка и связь",
-                        "Спорт и хобби",
-                        "Образование",
-                        "Прочее",
-                        "Доход"
-                      ]
-                    },
-                    "amount": {
-                      "type": "integer",
-                      "description": "Transaction's amount"
-                    },
-                    "date": {
-                      "type": "string",
-                      "description": "Transaction's date",
-                      "example": "2020-12-31"
-                    },
-                    "_id": {
-                      "type": "string",
-                      "description": "Transaction's id",
-                      "example": "507f1f77bcf86cd799439013"
-                    }
-                  }
-                }
-              }
+              "description": "array of answers",
+              "example": "['Who uses the product and which features are important to users, and which are secondary', 'How users solve problems and problems, and who they are', 'How you can attract more users; how to keep current ones and how to bring them to payment', 'Why users abandon the product (it may be in an inc…hnical bugs, lack of necessary functions or cost)', 'All options are correct', 'All options are incorrect']"
+            },
+            "question":{
+               "type": "string",
+               "description": "question",   
+                "example": "Product Owner controls"
+            },
+            "type":{
+               "type": "string",
+               "enum":["tech","theory"],
+               "description": "type of question",   
+                "example": "tech"
             }
           }
         }
       },
-      "RefreshTokensRequest": {
-        "type": "object",
-        "properties": {
-          "sid": {
-            "type": "string",
-            "description": "Session's ('sid' field after authentication)",
-            "example": "507f1f77bcf86cd799439011"
+      "ResultRequest": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "userAnswer":{
+               "type": "string",
+               "description": "User answer",   
+                "example": "Some user answer"
+            },
+             "_id": {
+              "type": "string",
+              "description": "question ID",
+              "example": "635937f59d8216968f25ff87"
+            }
           }
         }
       },
-      "RefreshTokensResponse": {
+      "ResultResponse": {
         "type": "object",
         "properties": {
-          "newAccessToken": {
-            "type": "string",
-            "description": "Access token",
-            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZmMyMDg1YmQwOTM2NTI4MTA3Y2UyNzQiLCJzaWQiOiI1ZmMyZDJmY2UxZDIwNTA2NzAyYmRkMjIiLCJpYXQiOjE2MDY2MDM1MTYsImV4cCI6MTYwNjYwNzExNn0.rJ_QjU4KvA76H96RHsvOBChK0Vjbd0NmqjMxdQVJIXA"
+          "correct": {
+            "type": "integer",
+            "description": "Number of correct answers",
+            "example": 7
           },
-          "newRefreshToken": {
+          "incorrect": {
+            "type": "integer",
+            "description": "Number of incorrect answers",
+            "example": 5
+          }
+        }
+      },
+      "CurrentResponse": {
+        "type": "object",
+        "properties": {
+          "email": {
             "type": "string",
-            "description": "Refresh token",
-            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZmMyMDg1YmQwOTM2NTI4MTA3Y2UyNzQiLCJzaWQiOiI1ZmMyZDJmY2UxZDIwNTA2NzAyYmRkMjIiLCJpYXQiOjE2MDY2MDM1MTYsImV4cCI6MTYwNjYwNzExNn0.rJ_QjU4KvA76H96RHsvOBChK0Vjbd0NmqjMxdQVJIXB"
+            "description": "User's email",
+            "format": "email"
           },
-          "newSid": {
+          "id": {
             "type": "string",
-            "description": "New session's id",
+            "description": "User's id",
             "example": "507f1f77bcf86cd799439011"
           }
         }
