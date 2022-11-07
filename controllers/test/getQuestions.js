@@ -5,11 +5,9 @@ const getQuestions = async (req, res) => {
   const result = await Test.aggregate([
     { $match: { type } },
     { $sample: { size: 12 } },
+    { $project: { _id: 1, question: 1, answers: 1, type: 1 } },
   ]);
 
-  for (let i = 0; i < result.length; i++) {
-    delete result[i].rightAnswer;
-  }
   res.json(result);
 };
 
