@@ -290,6 +290,21 @@
             "type": "string",
             "description": "Session's access token (needed for all requests)",
             "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZmMyMDg1YmQwOTM2NTI4MTA3Y2UyNzQiLCJzaWQiOiI1ZmMyZDJmY2UxZDIwNTA2NzAyYmRkMjIiLCJpYXQiOjE2MDY2MDM1MTYsImV4cCI6MTYwNjYwNzExNn0.rJ_QjU4KvA76H96RHsvOBChK0Vjbd0NmqjMxdQVJIXA"
+          },
+          "user":{
+            "type":"object",
+            "properties":{
+              "email":{
+                "type": "string",
+                "description": "User's email",
+                "example": "example@mail.com"
+              },
+              "_id":{
+                "type": "string",
+                "description": "User's id",
+                "example": "2123981029481029840"
+              }
+            }
           }
         }
       },
