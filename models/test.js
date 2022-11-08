@@ -13,8 +13,6 @@ const testSchema = new Schema(
     },
     rightAnswer: {
       type: String,
-      // required: true,
-      // versionKey: false,
     },
     type: {
       type: String,
