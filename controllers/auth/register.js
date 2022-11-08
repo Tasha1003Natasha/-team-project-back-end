@@ -22,7 +22,6 @@ const registerUser = async (req, res) => {
 
   res.status(201).json({
     email: result.email,
-    // id: result._id,
   });
 };
 

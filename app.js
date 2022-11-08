@@ -9,11 +9,7 @@ const testRoute = require("./routes/api/test");
 const passport = require("passport");
 const session = require('express-session');
 
-
-
 const app = express();
-
-
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 

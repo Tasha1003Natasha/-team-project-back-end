@@ -8,17 +8,15 @@ const testSchema = new Schema(
       required: true,
     },
     answers: {
-      type: [String], // check
+      type: [String],
       required: true,
     },
     rightAnswer: {
       type: String,
-      // required: true,
-      // versionKey: false,
     },
     type: {
       type: String,
-      enum: ["tech", "theory"], // added
+      enum: ["tech", "theory"],
       required: true,
     },
   },

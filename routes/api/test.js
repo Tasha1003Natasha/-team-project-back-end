@@ -3,15 +3,10 @@ const router = express.Router();
 
 const ctrl = require("../../controllers/test");
 const validateBody = require("../../middlewares/validateBody");
-const authenticate = require("../../middlewares/authenticate");
 const ctrlWrapper = require("../../helpers/ctrlWrapper");
 const schemas = require("../../schemas");
 
-router.get(
-  "/:type",
-  // authenticate,
-  ctrlWrapper(ctrl.getQuestions)
-);
+router.get("/:type", ctrlWrapper(ctrl.getQuestions));
 
 router.post(
   "/results",
@@ -20,5 +15,3 @@ router.post(
 );
 
 module.exports = router;
-
-
