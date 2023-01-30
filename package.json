@@ -2,13 +2,13 @@
   "name": "vercel-testing",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "engines": {
     "node": "18.x"
   },
   "private": true,
   "scripts": {
-    "start": "node app.js",
+    "start": "npm i && node server.js",
     "start:dev": "cross-env NODE_ENV=development nodemon ./server.js",
     "lint": "eslint **/*.js",
     "lint:fix": "eslint --fix **/*.js"
