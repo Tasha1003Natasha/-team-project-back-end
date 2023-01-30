@@ -28,6 +28,7 @@
     "swagger-ui-express": "^4.5.0"
   },
   "devDependencies": {
+    "@vercel/node": "^2.8.16",
     "eslint": "^7.19.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-standard": "16.0.3",
@@ -36,5 +37,4 @@
     "eslint-plugin-promise": "5.2.0",
     "nodemon": "^2.0.20"
   }
-  
 }
