@@ -1,9 +1,14 @@
 {
   "name": "template",
   "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": "18.x"
+  },
   "private": true,
   "scripts": {
-    "start": "cross-env NODE_ENV=production node ./server.js",
+    "start": "node index.js",
     "start:dev": "cross-env NODE_ENV=development nodemon ./server.js",
     "lint": "eslint **/*.js",
     "lint:fix": "eslint --fix **/*.js"
@@ -36,4 +41,5 @@
     "eslint-plugin-promise": "5.2.0",
     "nodemon": "^2.0.20"
   }
+  
 }
