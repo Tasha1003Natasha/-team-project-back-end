@@ -2,16 +2,10 @@
     "version": 2,
     "name": "team-project-back-end",
     "builds": [
-        {
-          "src": "./index.js",
-          "use": "@vercel/node"
-        }
-      ],
-      "routes": [
-        {
-          "src": "/(.*)",
-          "dest": "/"
-        }
-      ]
+       { "src": "*.js", "use": "@vercel/node" }
+    ],
+    "routes": [
+       { "src": "/(.*)", "dest": "/app.js" }
+    ]
  }
 
